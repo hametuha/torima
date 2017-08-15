@@ -1,0 +1,24 @@
+{
+    "name": "hametuha/torima",
+    "description": "WP-CLI based dummy data generator",
+    "type": "library",
+    "license": "GPL-3.0 or later",
+    "homepage": "https://github.com/hametuha/torima",
+    "support": {
+        "issues": "https://github.com/hametuha/torima/issues"
+    },
+    "authors": [
+        {
+            "name": "fumikito",
+            "email": "guy@hametuha.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {},
+    "autoload": {
+        "files": [ "torima.php" ],
+        "psr-0": {
+            "Hametuha\\Torima": "src/"
+        }
+    }
+}
