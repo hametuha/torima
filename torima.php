@@ -42,27 +42,24 @@ if ( ! function_exists( 'torima_data' ) ) {
 
 
 // If plugin mode, require directly
-add_action( 'plugins_loaded', function() {
+$autoloader = __DIR__ . '/vendor/autoload.php';
+if ( file_exists( $autoloader ) ) {
+	require $autoloader;
+}
 
-	$autoloader = __DIR__ . '/vendor/autoload.php';
-	if ( file_exists($autoloader  ) ) {
-		require $autoloader;
-	}
-
-	// Parse Directory and register commands.
-	$dir = __DIR__ . '/src/Hametuha/Torima/Commands';
-	if ( is_dir( $dir ) ) {
-		foreach ( scandir( $dir ) as $file ) {
-			if ( preg_match( '#^([^._].*)\.php$#', $file, $match ) ) {
-				$class_name = "Hametuha\\Torima\\Commands\\{$match[1]}";
-				if ( class_exists( $class_name ) ) {
-					/** @var \Hametuha\Torima\AbstractCommand $class_name */
-					WP_CLI::add_command( $class_name::command_name(), $class_name );
-				}
+// Parse Directory and register commands.
+$dir = __DIR__ . '/src/Hametuha/Torima/Commands';
+if ( is_dir( $dir ) ) {
+	foreach ( scandir( $dir ) as $file ) {
+		if ( preg_match( '#^([^._].*)\.php$#', $file, $match ) ) {
+			$class_name = "Hametuha\\Torima\\Commands\\{$match[1]}";
+			if ( class_exists( $class_name ) ) {
+				/** @var \Hametuha\Torima\AbstractCommand $class_name */
+				WP_CLI::add_command( $class_name::command_name(), $class_name );
 			}
 		}
 	}
-} );
+}
 
 
 define( 'TORIMA_VERSION', torima_data()['version'] );
