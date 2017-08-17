@@ -90,7 +90,7 @@ class Torima extends AbstractCommand {
 			}
 		}
 		if ( $errors ) {
-			\WP_CLI::error( sprintf( 'Import done with %s', ( 1 === $errors ) ? '1 error' : sprintf( '%d errors', $errors ) ) );
+			\WP_CLI::error( sprintf( 'Import done with %s.', ( 1 === $errors ) ? '1 error' : sprintf( '%d errors', $errors ) ) );
 		} else {
 			\WP_CLI::success( 'Import done!' );
 		}

@@ -18,6 +18,8 @@ if ( ! defined( 'WP_CLI' ) || ! WP_CLI ) {
 // If it's already loaded, skip.
 if ( defined( 'TORIMA_VERSION' ) ) {
 	return;
+} else {
+	define( 'TORIMA_VERSION', '0.1.0' );
 }
 
 /**
@@ -60,6 +62,3 @@ if ( is_dir( $dir ) ) {
 		}
 	}
 }
-
-
-define( 'TORIMA_VERSION', torima_data()['version'] );

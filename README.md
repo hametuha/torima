@@ -1,81 +1,41 @@
 # Torima
 
-Contributors: Takahashi_Fumiki, hametuha
+Contributors: Takahashi_Fumiki, hametuha  
 Tags: advertisement  
 Requires at least: 4.7.0  
-Tested up to: 4.8.1
+Tested up to: 4.8.1  
 Stable tag: 1.0.0  
 License: GPLv3 or later  
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
-Advertise block manager for WordPress.
+WP-CLI command for sample data collection.
 
 ## Description
 
-You can create ad slot for you WordPress theme.
-In each position, the latest ad field will be displayed.
-You can manage your advertisement's schedule & display!
-
-### From Theme
-
-Call action hook in your theme:
+This is a WP-CLI package command. Use like below:
 
 <pre>
-&lt;?php do_action( 'taro_ad_field', 'after-header', '&lt;div class="after-header"&gt;', '&lt;/div&gt;' ); ?&gt;
+# This import all Japanese prefecture as term.
+wp torima todoufuken
 </pre>
 
-In this place, the latest ad will be displayed.
-With [Taro Clockwork Post](https://wordpress.org/plugins/taro-clockwork-post/) plugin, you can let your ad be automatically expired.
-
-#### Hook Arguments
-
-`do_action( $hook_name, $slug, $before, $after );`
-
-1. **$hook_name**: The action hook name. Always should be `taro_ad_field`.
-2. **$slug**: Slug of position.
-3. **$before**: String to be output just before ad block. If no ad exists, this won't be displayed.
-4. **$after**: String to be output just after ad block.
-
-### From Widget
-
-We also have widget for ad field. The latest ad of specified position will be displayed in the widget.
-
-### Set Default Positions
-
-In your theme, add filter hook for `taf_default_positions`.
-These terms will be created automatically.
-
-<pre>
-add_filter( 'taf_default_positions', function() {
-	return [
-		'after-header' => [
-			'name' => 'After Header',
-			'description' => 'Displayed just after header.',
-		],
-		'after-content' => [
-			'name' => 'After Content',
-			'description' => 'Displayed just after content.',
-		],
-	];
-} );
-</pre>
-
-Defaults are empty array, so no default position.
-You can add new position to them with filter hook like above.
-The structure of array will be like below:
-
-<pre>
-[
-  'slug_name' => [
-    'name'        => 'Verbose Postion Name',
-    'description' => 'About where will be displayed(up to you)',
-  ],
-]
-</pre>
-
+For more detail, just run `wp help torima`.
 
 ## Installation
 
+### As Package Command
+
+<pre>
+wp package install hametuha/torima
+</pre>
+
+### As Plugin
+
+This can be installed as plugin, but requires build process.
+[npm](https://www.npmjs.com) and [composer](https://getcomposer.org) are required.
+
+1. Clone this repository `git clone https://github.com/hametuha/torima.git` at your plugin directory.
+1. Go to `torima` directory and run `composer install and `
 1. Upload the plugin files to the `/wp-content/plugins/taro-ad-fields` directory, or install the plugin through the WordPress plugins screen directly.
 2. Activate the plugin through the 'Plugins' screen in WordPress
 3. Go to `Ad Field > Position` and create positons. If you set default positions with filters, they will be automatically generated.
@@ -85,22 +45,10 @@ The structure of array will be like below:
 
 ### How to Contribute
 
-We host our code on [Github](https://github.com/tarosky/taro-ad-fields), so feel free to send PR or issues.
-
-### Is there any vulnerability?
-
-As far as we konw, **NO**. But nothing is perfect.
-This plugin allows you to save Javascript like Google Adsense code,
-so please be careful about who can edit your ad.
-You can customize the capability for ad fields by hooking `taf_post_type_args` filter.
-
-## Screenshots
-
-W.I.P
+We host our code on [Github](https://github.com/hametuha/torima), so feel free to send PR or issues.
 
 ## Changelog
 
-### 1.0
+### 0.1.0
 
-* A change since the previous version.
-* Another change.
+* Initial release.
